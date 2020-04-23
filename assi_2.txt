@@ -6,4 +6,22 @@ This code works fine on many applications, since thread were designed to run mul
 has undergone a lot of evolution over time. So it can be hard to know what tools to use, what libraries to invest in, or what documentation to read.
 Async/.await Primer
 
-So, what is async await? Async-await is a way to write functions that can "pause", return control to the runtime, and then pick up from where they left off. Typically those pauses are to wait for I/O, but there can be any number of uses. You may be familiar with the async-await from javascript or C#. Rust version of the feature is similar, but with a few key differences.  
+So, what is async await? Async-await is a way to write functions that can "pause", return control to the runtime, and then pick up from where they left off. Typically those pauses are to wait for I/O, but there can be any number of uses. You may be familiar with the async-await from javascript or C#. Rust version of the feature is similar, but with a few key differences 
+
+To use async-await, you start by writing async fn instead of fn
+Like this:
+async fn first_function() -> u32 { .. }
+
+Unlike a regular function, calling an async fn doesn't have any immediate effect. Instead, it returns a Future. This is a suspended computation that is waiting to be executed. To actually execute the future, use the .await operator:
+
+async fn another_function() { 
+       // Create the future: 
+             let future = first_function(); 
+       // Await the future, which will execute it (and suspend 
+            // this function if we encounter a need to wait for I/O): 
+      let result: u32 = future.await; 
+      ... 
+}
+
+This example shows the first difference between Rust and other languages: we write future.await instead of await future. This syntax integrates better with Rust's ? operator for propagating errors (which, after all, are very common in I/O). You can simply write future.await? to await the result of a future and propagate errors. It also has the advantage of making method chaining painless.
+
