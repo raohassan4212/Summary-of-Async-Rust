@@ -2,7 +2,7 @@
 Before diving into async rust first we know what is async(asynchronous). Asynchronous mean running multiple application or program concurrently on a single thread. It sound like multithreading but it is quit different from multithreading. In multithreading we create multiple intense of thread like this
 
 
-
-
+This code works fine on many applications, since thread were designed to run multiple different tasks at once. But in some application multithreading is not so good. In these application we used async programming running multiple application on a single thread speedly and concurrently. Now lets talk about async rust. This is a new feature in rust and its stable ￼version is release recently. Rust itself is very safe and fast language but this feature it more fast. In rust asynchronous programming is different from other languages. A function that uses threads is usually just as easy as calling any normal function. However asynchronous function require special support from the language and libraries. In rust (async fn)  create an asynchronous function which returns a future. To execute the body of the function, the returned future must be run to completion. Its important to remember that traditional threaded application can be quite effective. The increased complexity of the asynchronous programming model is not always worth it. Its important to consider whether your application would be better served by using a simple threaded model. Asynchronous rust ecosystem
+has undergone a lot of evolution over time. So it can be hard to know what tools to use, what libraries to invest in, or what documentation to read.
 
 
